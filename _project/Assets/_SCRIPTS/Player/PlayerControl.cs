@@ -68,7 +68,17 @@ public class PlayerControl : MonoBehaviour
             grounded = false;
             jump = true;
         }
-        if (InputManager.Devices.Count > 0 && InputManager.Devices[playerNumber].Action1.WasReleased) {
+        
+        //Added this in - jump with keyboard controls (space or up arrow)
+        if ((Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) && grounded) {
+        	grounded = false;
+        	jump = true;
+        }
+        
+        //Added second check to see if need to stop coroutine
+        
+        if ((InputManager.Devices.Count > 0 && InputManager.Devices[playerNumber].Action1.WasReleased) 
+        	|| Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.Space) || Input.GetKeyUp (KeyCode.W)) {
 
             StopCoroutine("jumpRoutine");
         }
@@ -87,6 +97,16 @@ public class PlayerControl : MonoBehaviour
 		// Cache the horizontal input.
         if ((InputManager.Devices.Count > 0))
 		    h = InputManager.Devices[playerNumber].LeftStickX;
+
+		// Added this in - detect keyboard input if there's no controller input
+		if (h == 0) {
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+				h--;
+			}
+			if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+				h++;
+			}
+		}
 
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		

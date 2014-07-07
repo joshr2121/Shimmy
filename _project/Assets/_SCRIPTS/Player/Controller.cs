@@ -49,7 +49,7 @@ public class Controller : MonoBehaviour {
 			
 			int speed = 0;
 
-			if (InputManager.Devices[0].LeftBumper || InputManager.Devices[0].LeftTrigger) {
+			if (InputManager.Devices[0].LeftBumper || InputManager.Devices[0].LeftTrigger || Input.GetKey (KeyCode.Q)) {
 				
 				speed--;
 				
@@ -58,7 +58,7 @@ public class Controller : MonoBehaviour {
 				}				
 			}
 			
-			if (InputManager.Devices[0].RightBumper || InputManager.Devices[0].RightTrigger) {
+			if (InputManager.Devices[0].RightBumper || InputManager.Devices[0].RightTrigger || Input.GetKey (KeyCode.E)) {
 				
 				speed++;
 				
