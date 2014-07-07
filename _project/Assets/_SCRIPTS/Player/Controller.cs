@@ -10,9 +10,8 @@ public class Controller : MonoBehaviour {
     private TimeShiftSFX timeShiftSFX;
 
     void Awake() {
-
         Global.controller = this;
-        timeShiftSFX = GameObject.Find ("Player1").GetComponent<TimeShiftSFX>();
+		timeShiftSFX = GameObject.Find ("Player1").GetComponent<TimeShiftSFX>();
     }
     
     void Start () {
