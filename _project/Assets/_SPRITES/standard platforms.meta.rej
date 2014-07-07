@@ -1,0 +1,11 @@
+diff a/_project/Assets/_SPRITES/standard platforms.meta b/_project/Assets/_SPRITES/standard platforms.meta	(rejected hunks)
+@@ -1,5 +1,9 @@
+ fileFormatVersion: 2
++<<<<<<< HEAD
+ guid: b3b86722ce6e54842af78116e1bb196a
++=======
++guid: 9762bf4fb710a5f40bcfd57a936978fa
++>>>>>>> 46bf0037634e7d418364f8339bedcc68e57111de
+ folderAsset: yes
+ DefaultImporter:
+   userData: 
