@@ -47,12 +47,35 @@ public class Controller : MonoBehaviour {
 		}
         
         if (InputManager.Devices.Count > 0) {
-
-            bool found = false;
 			
+			int speed = 0;
+
+			if (InputManager.Devices[0].LeftBumper || InputManager.Devices[0].LeftTrigger) {
+				
+				speed--;
+				
+				if (Global.timeScaleToggle != -1) {
+					timeShiftSFX.PlaySlowdown ();
+				}				
+			}
+			
+			if (InputManager.Devices[0].RightBumper || InputManager.Devices[0].RightTrigger) {
+				
+				speed++;
+				
+				if (Global.timeScaleToggle != 1) {
+					timeShiftSFX.PlaySpeedup ();
+				}
+			}
+			
+			Global.timeScaleToggle = speed;
+		}
+							
+			/**Old 2P code
+
             for (int i = 0; i < 1; i++) {
 
-                if ((InputManager.Devices[i].RightBumper || InputManager.Devices[i].LeftTrigger)) {
+                if ((InputManager.Devices[i].LeftBumper || InputManager.Devices[i].LeftTrigger)) {
                     found = true;
 
                     if (i == 0) {
@@ -67,11 +90,9 @@ public class Controller : MonoBehaviour {
                     else if (i == 1) {
                         Global.timeScaleToggle = 1;
                         //Time.timeScale = maxTimeScale;
-                    }
-                    
-                    
+                    }                                        
                 }
-                
+               	             
                 if (InputManager.Devices.Count > 0 && singlePlayerLevel && InputManager.Devices[i].LeftBumper) {
                 	found = true;
                 	
@@ -89,14 +110,14 @@ public class Controller : MonoBehaviour {
 	                		Global.timeScaleToggle = 1;
 	                	}
 	                }
-	            }                	
+	            }
             }
 
             if (!found) {
                 Global.timeScaleToggle = 0;
                 //Time.timeScale = 1f;
             }
-        }    
+		*/   
 
         //print(InputManager.Devices.Count);
 

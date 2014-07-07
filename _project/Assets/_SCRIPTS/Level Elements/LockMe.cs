@@ -36,7 +36,7 @@ public class LockMe : MonoBehaviour {
 		transform.position = new Vector3 (newPos.x, newPos.y, newPos.z);
 		
 		if (lockRotation) {		
-			transform.eulerAngles = rot;
+			transform.eulerAngles = eulerAngles;
 		}
 	}
 }

@@ -81,6 +81,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 033cadb2109ee314d84dec5d45801b58, type: 2}
+      propertyPath: customProfiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 033cadb2109ee314d84dec5d45801b58, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -116,6 +120,10 @@ Prefab:
     - target: {fileID: 400000, guid: 033cadb2109ee314d84dec5d45801b58, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 033cadb2109ee314d84dec5d45801b58, type: 2}
+      propertyPath: enableXInput
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 033cadb2109ee314d84dec5d45801b58, type: 2}
