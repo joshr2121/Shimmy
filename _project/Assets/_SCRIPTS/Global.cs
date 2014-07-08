@@ -11,4 +11,5 @@ public class Global : MonoBehaviour {
     public static Vector3 player2Start;
 
     public static int currentLevel;
+  
 }

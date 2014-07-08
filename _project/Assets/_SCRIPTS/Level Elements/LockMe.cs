@@ -12,8 +12,7 @@ public class LockMe : MonoBehaviour {
 	public bool lockRotation;
 	
 	// Use this for initialization
-	void Start () {
-		
+	void Start () {		
 		xPos = transform.position.x;
 		yPos = transform.position.y;
 		eulerAngles = transform.eulerAngles;

@@ -49,7 +49,7 @@ public class Controller : MonoBehaviour {
 			
 			int speed = 0;
 
-			if (InputManager.Devices[0].LeftBumper || InputManager.Devices[0].LeftTrigger || Input.GetKey (KeyCode.Q)) {
+			if (InputManager.Devices[0].LeftBumper || InputManager.Devices[0].LeftTrigger || Input.GetKey (KeyCode.Q) || Input.GetKey (KeyCode.K)) {
 				
 				speed--;
 				
@@ -58,7 +58,7 @@ public class Controller : MonoBehaviour {
 				}				
 			}
 			
-			if (InputManager.Devices[0].RightBumper || InputManager.Devices[0].RightTrigger || Input.GetKey (KeyCode.E)) {
+			if (InputManager.Devices[0].RightBumper || InputManager.Devices[0].RightTrigger || Input.GetKey (KeyCode.E) || Input.GetKey (KeyCode.L)) {
 				
 				speed++;
 				
@@ -127,9 +127,13 @@ public class Controller : MonoBehaviour {
         //else if (InputManager.Devices.Count > 0) {
         //    print(InputManager.Devices[0].Action1);            
         //}
-        if (Input.GetKeyUp(KeyCode.R)) {
-      
-            Application.LoadLevel(Global.currentLevel);
+        if (Input.GetKeyUp(KeyCode.R) || InputManager.Devices[0].MenuWasPressed) {
+        	if (Global.currentLevel == -1) {
+            	Application.LoadLevel (Application.levelCount-1);
+            }
+            else {
+            	Application.LoadLevel(Global.currentLevel);
+            }
         }
 	}
 

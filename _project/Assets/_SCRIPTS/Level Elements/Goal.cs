@@ -15,7 +15,6 @@ public class Goal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         Global.currentLevel = nextLevel - 1;
 	}
 	

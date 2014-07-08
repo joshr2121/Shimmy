@@ -4,25 +4,27 @@ using System.Collections;
 
 public class RotatingPlatform : MonoBehaviour {
 
+	float timeScale = 1;
+
 	public float rotateSpeed;
-
-    float timeScale = 1;
-
     public int rotateDirection = 1;
-
-    public float rotateTime;
-
-    public float angle;
+	public float angle; 	// Assume lever starts at the midpoint of its rotation
+	private float maxEulerAngle;
+	private float minEulerAngle;
+	
+	private float timeScaleTarget;
+	
+	//public float rotateTime;
     
 	// Use this for initialization
 	void Start () {
 
+		maxEulerAngle = transform.eulerAngles.z + angle/2;
+		minEulerAngle = transform.eulerAngles.z - angle/2;
         //if (rotateTime != 0)
         //    StartCoroutine(changeDirection());
 	}
-        
-    private float timeScaleTarget;
-	
+        	
 	// Update is called once per frame
 	void FixedUpdate () {
 
@@ -37,19 +39,24 @@ public class RotatingPlatform : MonoBehaviour {
         }
 
         // LERP TIME SCALE VALUE MOTHERSFUCKERZ
+        // Actually don't
+        /** 
         if (timeScale != timeScaleTarget) {
-
-            timeScale = Mathf.Lerp(timeScale, timeScaleTarget, Time.deltaTime * 2);
+	         timeScale = Mathf.Lerp(timeScale, timeScaleTarget, 0.1f);
         }
+        */
 
 		// This is causing some problems but is probably okay for now
-        if (transform.localEulerAngles.z > angle && angle != 0) {
-            rotateDirection *= -1;
+        if (angle != 0) {
+        	if (transform.eulerAngles.z > maxEulerAngle || transform.eulerAngles.z < minEulerAngle) {
+            	rotateDirection *= -1;
+        	}
         }
 
 		transform.Rotate (Vector3.forward * Time.deltaTime * rotateSpeed * timeScale * rotateDirection); 
 	}
 
+	/**
     IEnumerator changeDirection() {
 
         yield return new WaitForSeconds(rotateTime / timeScale);
@@ -58,4 +65,5 @@ public class RotatingPlatform : MonoBehaviour {
 
         StartCoroutine(changeDirection());
     }
+    */
 }

@@ -13,10 +13,12 @@ public class PlayerControl : MonoBehaviour
 
     public int playerNumber;
 
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
+	public float moveForce;			// Amount of force added to move the player left and right.
+	public float maxSpeed;				// The fastest the player can travel in the x axis.
+	public float maxRisingSpeed;		// The fastest the player can travel upward on the y axis.
+	public float maxFallingSpeed;		// The fastest the player can travel downward on the y axis.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
-	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
+	public float jumpForce;			// Amount of force added when the player jumps.
 	
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
@@ -32,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     public AudioSource sourceCheckpointAndWin;
     public AudioClip clipCheckpoint;
     public AudioClip clipWin;
+    
 
 	void Awake()
 	{
@@ -76,12 +79,15 @@ public class PlayerControl : MonoBehaviour
         }
         
         //Added second check to see if need to stop coroutine
+       	// Nah
+        /**
         
         if ((InputManager.Devices.Count > 0 && InputManager.Devices[playerNumber].Action1.WasReleased) 
         	|| Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.Space) || Input.GetKeyUp (KeyCode.W)) {
 
             StopCoroutine("jumpRoutine");
         }
+        */
 
         if (InputManager.ActiveDevice.Action3 && !explosionDisabled) {
 
@@ -137,6 +143,15 @@ public class PlayerControl : MonoBehaviour
 			jump = false;
 
             StartCoroutine("jumpRoutine");
+		}
+		
+		// Added clumsy y speed checks
+		if (rigidbody2D.velocity.y > maxRisingSpeed) {
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, maxRisingSpeed);
+		}
+		
+		else if (rigidbody2D.velocity.y < -1 * maxFallingSpeed) {
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -1 * maxFallingSpeed);
 		}
 	}
 
